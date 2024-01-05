@@ -2,8 +2,8 @@
 import tcod
 from engine import Engine
 from entity import Entity
-from game_map import GameMap
 from input_handlers import EventHandler
+from procgen import generate_dungeon
 
 def main() -> None:
     screen_width = 80
@@ -18,11 +18,11 @@ def main() -> None:
 
     event_hendler = EventHandler()
 
-    player = Entity(screen_width // 2, screen_heigth//2, "@", (255, 255, 255))
+    player = Entity(screen_width // 2, screen_heigth // 2, "@", (255, 255, 255))
     npc = Entity(screen_width // 2 -5, screen_heigth // 2, "@", (225, 225, 0))
     entities = {npc, player}
 
-    game_map = GameMap(map_width, map_height)
+    game_map = generate_dungeon(map_width, map_height)
 
     engine = Engine(entities=entities, event_hendler=event_hendler, game_map=game_map, player=player)
 
@@ -45,3 +45,4 @@ def main() -> None:
 if __name__ == "__main__":
     main()
     # python main.py
+    # pip install -r requirements.txt
